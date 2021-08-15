@@ -64,28 +64,30 @@ static int update(UPDATE_FUNC_ARGS)
 				rt = TYP(r);
 				switch (rt)
 				{
-				case PT_ELEC:	
-					int r, rx, ry, rt;
-						for (rx=-1; rx<2; rx++)
-							for (ry=-1; ry<2; ry++)
-								if (BOUNDS_CHECK && (rx || ry))
-								{
-									r = pmap[y+ry][x+rx];
-									if (!r)
-										continue;
-									rt = TYP(r);
-									parts[i].life++;
-									if (parts[i].life==4)
+				case PT_ELEC:
+					if (rt == PT_ELEC) {
+						int r, rx, ry, rt;
+							for (rx=-1; rx<2; rx++)
+								for (ry=-1; ry<2; ry++)
+									if (BOUNDS_CHECK && (rx || ry))
 									{
-										sim->kill_part(i);
-										return 1;
+										r = pmap[y+ry][x+rx];
+										if (!r)
+											continue;
+										rt = TYP(r);
+										parts[i].life++;
+										if (parts[i].life==4)
+										{
+											sim->kill_part(i);
+											return 1;
+										}
+										
+										sim->create_part(ID(r), x+rx, y+ry, PT_PHOT);
+										
+										sim->kill_part(ID(r));
+										sim->pv[y/CELL][x/CELL] += 10.0f;
 									}
-									
-									sim->create_part(ID(r), x+rx, y+ry, PT_PHOT);
-									
-									sim->kill_part(ID(r));
-									sim->pv[y/CELL][x/CELL] += 10.0f;
-								}
+					}
 				}
 			}
 	return 0;
