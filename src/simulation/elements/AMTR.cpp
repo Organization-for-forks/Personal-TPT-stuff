@@ -27,7 +27,7 @@ void Element::Element_AMTR()
 	Explosive = 0;
 	Meltable = 0;
 	Hardness = 0;
-	DefaultProperties.tmp = 1; //tmp hack to preserve functionality on old saves
+	DefaultProperties.tmp = 1; //tmp hack to preserve functionality on old saves (No longer used, I just gave up on the stuff i made, please help)
 
 	Weight = 100;
 
