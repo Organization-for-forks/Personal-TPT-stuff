@@ -2,7 +2,7 @@
 
 static int update(UPDATE_FUNC_ARGS);
 static int graphics(GRAPHICS_FUNC_ARGS);
-static int create(ELEMENT_CREATE_FUNC_ARGS);
+static void create(ELEMENT_CREATE_FUNC_ARGS);
 
 void Element::Element_AMTR()
 {
@@ -47,6 +47,7 @@ void Element::Element_AMTR()
 
 	Update = &update;
 	Graphics = &graphics;
+	Create = &create;
 }
 
 static int update(UPDATE_FUNC_ARGS)
@@ -116,5 +117,5 @@ static int graphics(GRAPHICS_FUNC_ARGS)
 
 static int create(ELEMENT_CREATE_FUNC_ARGS)
 {
-	DefaultProperties.tmp = 1;
+	sim->parts[i].tmp = 1;
 }
