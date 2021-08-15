@@ -86,7 +86,9 @@ static int update(UPDATE_FUNC_ARGS)
 									sim->kill_part(ID(r));
 									sim->pv[y/CELL][x/CELL] += 10.0f;
 								}
-					return 0;
+				}
+			}
+	return 0;
 
 
 static int graphics(GRAPHICS_FUNC_ARGS)
