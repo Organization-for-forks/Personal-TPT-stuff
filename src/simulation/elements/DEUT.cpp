@@ -117,6 +117,8 @@ static int update(UPDATE_FUNC_ARGS)
 				}
 				return 0;
 			}
+		}
+	}
 	if (parts[i].life < maxlife)
 	{
 		for (rx=-1; rx<2; rx++)
