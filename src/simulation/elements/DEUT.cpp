@@ -63,6 +63,58 @@ static int update(UPDATE_FUNC_ARGS)
 	// Compress when Newtonian gravity is applied
 	// multiplier=1 when gravtot=0, multiplier -> 5 as gravtot -> inf
 	maxlife = maxlife*int(5.0f - 8.0f/(gravtot+2.0f));
+	for (rx=-1; rx<2; rx++)
+		for (ry=-1; ry<2; ry++)
+			if (sim->can_move[PT_OXYG][rt])
+			{
+				if (parts[i].temp > 2273.15 && sim->pv[y/CELL][x/CELL] > 30.0f)
+				{
+					if (RNG::Ref().chance(1, 2))
+					{
+						j = sim->create_part(-3,rx,ry,PT_OXYG);
+						if (j>-1)
+						{
+							parts[j].temp = temp;
+							parts[j].tmp |= 4;
+						}
+						int j;
+						float temp = parts[i].temp;
+						sim->create_part(i,x,y,PT_NBLE);
+						parts[i].tmp = 0x1;
+
+						j = sim->create_part(-3,x,y,PT_NEUT);
+						if (j>-1)
+							parts[j].temp = temp;
+						if (RNG::Ref().chance(1, 10))
+						{
+							j = sim->create_part(-3,x,y,PT_ELEC);
+							if (j>-1)
+								parts[j].temp = temp;
+						}
+						j = sim->create_part(-3,x,y,PT_PHOT);
+						if (j>-1)
+						{
+							parts[j].ctype = 0x7C0000;
+							parts[j].temp = temp;
+							parts[j].tmp = 0x1;
+						}
+						rx = x + RNG::Ref().between(-1, 1), ry = y + RNG::Ref().between(-1, 1), rt = TYP(pmap[ry][rx]);
+						if (sim->can_move[PT_PLSM][rt] || rt == PT_H2)
+						{
+							j = sim->create_part(-3,rx,ry,PT_PLSM);
+							if (j>-1)
+							{
+								parts[j].temp = temp;
+								parts[j].tmp |= 4;
+							}
+						}
+						parts[i].temp = temp + RNG::Ref().between(750, 1249);
+						sim->pv[y/CELL][x/CELL] += 30;
+						return 1;
+					}
+				}
+				return 0;
+			}
 	if (parts[i].life < maxlife)
 	{
 		for (rx=-1; rx<2; rx++)
