@@ -61,7 +61,8 @@ static int update(UPDATE_FUNC_ARGS)
 					if (!r)
 						continue;
 					rt = TYP(r);
-					if (rt!=PT_AMTR && rt!=PT_DMND && rt!=PT_CLNE && rt!=PT_PCLN && rt!=PT_VOID && rt!=PT_BHOL && rt!=PT_NBHL && rt!=PT_PRTI && rt!=PT_PRTO)
+					int immune = parts[i].ctype;
+					if (rt!=PT_AMTR && rt!=PT_DMND && rt!=PT_CLNE && rt!=PT_PCLN && rt!=PT_VOID && rt!=PT_BHOL && rt!=PT_NBHL && rt!=PT_PRTI && rt!=PT_PRTO && rt!immune)
 					{
 					
 						if (RNG::Ref().chance(1, 10))
