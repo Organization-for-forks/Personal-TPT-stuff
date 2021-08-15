@@ -89,7 +89,7 @@ static int update(UPDATE_FUNC_ARGS)
 				}
 			}
 	return 0;
-
+}
 
 static int graphics(GRAPHICS_FUNC_ARGS)
 {
