@@ -53,7 +53,7 @@ void Element::Element_DEUT()
 
 static int update(UPDATE_FUNC_ARGS)
 {
-	int r, rx, ry, trade, np;
+	int r, rx, ry, rt, trade, np;
 	float gravtot = fabs(sim->gravy[(y/CELL)*(XRES/CELL)+(x/CELL)])+fabs(sim->gravx[(y/CELL)*(XRES/CELL)+(x/CELL)]);
 	// Prevent division by 0
 	float temp = std::max(1.0f, (parts[i].temp + 1));
@@ -63,7 +63,6 @@ static int update(UPDATE_FUNC_ARGS)
 	// Compress when Newtonian gravity is applied
 	// multiplier=1 when gravtot=0, multiplier -> 5 as gravtot -> inf
 	maxlife = maxlife*int(5.0f - 8.0f/(gravtot+2.0f));
-	int r,rx,ry,rt;
 	for (rx=-1; rx<2; rx++)
 		for (ry=-1; ry<2; ry++)
 			rt = TYP(r);
