@@ -26,6 +26,7 @@ void Element::Element_AMTR()
 	Explosive = 0;
 	Meltable = 0;
 	Hardness = 0;
+	DefaultProperties.tmp = 1; //tmp hack to preserve functionality on old saves
 
 	Weight = 100;
 
@@ -49,6 +50,33 @@ void Element::Element_AMTR()
 
 static int update(UPDATE_FUNC_ARGS)
 {
+	if (parts[i].tmp == 1)
+	{
+		int r, rx, ry, rt;
+		for (rx=-1; rx<2; rx++)
+			for (ry=-1; ry<2; ry++)
+				if (BOUNDS_CHECK && (rx || ry))
+				{
+					r = pmap[y+ry][x+rx];
+					if (!r)
+						continue;
+					rt = TYP(r);
+					if (rt!=PT_AMTR && rt!=PT_DMND && rt!=PT_CLNE && rt!=PT_PCLN && rt!=PT_VOID && rt!=PT_BHOL && rt!=PT_NBHL && rt!=PT_PRTI && rt!=PT_PRTO)
+					{
+					
+						if (RNG::Ref().chance(1, 10))
+							sim->create_part(ID(r), x+rx, y+ry, PT_PHOT);
+						if (RNG::Ref().chance(19, 20))
+							sim->kill_part(ID(r));
+						sim->pv[y/CELL][x/CELL] -= 2.0f;
+						sim->hv[y/CELL][x/CELL] = MAX_TEMP
+						sim->kill_part(i);
+						return 1;
+					}
+				}
+		return 0;
+	}
+
 	int r, rx, ry, rt;
 	for (rx=-1; rx<2; rx++)
 		for (ry=-1; ry<2; ry++)
