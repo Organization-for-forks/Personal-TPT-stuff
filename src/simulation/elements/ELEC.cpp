@@ -112,7 +112,7 @@ static int update(UPDATE_FUNC_ARGS)
 					parts[ID(r)].life = 1000;
 					break;
 				case PT_GOLD:
-					if (RNG::Ref().chance(1, 100) == 100)
+					if (RNG::Ref().chance(1, 100))
 					{
 						sim->part_change_type(i, x, y, PT_AMTR); //Reference to how positrons were first artificially created
 						return 1;
