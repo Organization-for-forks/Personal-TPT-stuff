@@ -65,19 +65,18 @@ static int update(UPDATE_FUNC_ARGS)
 	maxlife = maxlife*int(5.0f - 8.0f/(gravtot+2.0f));
 	for (rx=-1; rx<2; rx++)
 		for (ry=-1; ry<2; ry++)
-			if (sim->can_move[PT_OXYG][rt])
+			if (sim->can_move[PT_O2][rt])
 			{
 				if (parts[i].temp > 2273.15 && sim->pv[y/CELL][x/CELL] > 30.0f)
 				{
 					if (RNG::Ref().chance(1, 2))
 					{
-						j = sim->create_part(-3,rx,ry,PT_OXYG);
+						int j = sim->create_part(-3,rx,ry,PT_O2);
 						if (j>-1)
 						{
 							parts[j].temp = temp;
 							parts[j].tmp |= 4;
 						}
-						int j;
 						float temp = parts[i].temp;
 						sim->create_part(i,x,y,PT_NBLE);
 						parts[i].tmp = 0x1;
