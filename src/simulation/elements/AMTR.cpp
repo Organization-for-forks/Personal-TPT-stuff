@@ -115,7 +115,7 @@ static int graphics(GRAPHICS_FUNC_ARGS)
 	return 1;
 }
 
-static int create(ELEMENT_CREATE_FUNC_ARGS)
+static void create(ELEMENT_CREATE_FUNC_ARGS)
 {
 	sim->parts[i].tmp = 1;
 }
