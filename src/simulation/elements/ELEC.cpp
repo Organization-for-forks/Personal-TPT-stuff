@@ -116,6 +116,7 @@ static int update(UPDATE_FUNC_ARGS)
 					{
 						sim->part_change_type(i, x, y, PT_AMTR); //Reference to how positrons were first artificially created
 						parts[i].ctype = PT_GOLD;
+						parts[i].tmp = 1;
 						return 1;
 					}
 					break;
