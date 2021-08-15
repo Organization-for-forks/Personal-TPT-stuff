@@ -2,7 +2,7 @@
 
 static int update(UPDATE_FUNC_ARGS);
 static int graphics(GRAPHICS_FUNC_ARGS);
-static int create(CREATE_ELEMENT_FUNC_ARGS);
+static int create(ELEMENT_CREATE_FUNC_ARGS);
 
 void Element::Element_AMTR()
 {
@@ -114,7 +114,7 @@ static int graphics(GRAPHICS_FUNC_ARGS)
 	return 1;
 }
 
-static int create(CREATE_ELEMENT_FUNC_ARGS)
+static int create(ELEMENT_CREATE_FUNC_ARGS)
 {
 	DefaultProperties.tmp = 1;
 }
