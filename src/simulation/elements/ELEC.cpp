@@ -115,6 +115,7 @@ static int update(UPDATE_FUNC_ARGS)
 					if (RNG::Ref().chance(1, 100))
 					{
 						sim->part_change_type(i, x, y, PT_AMTR); //Reference to how positrons were first artificially created
+						parts[i].ctype = PT_GOLD;
 						return 1;
 					}
 					break;
