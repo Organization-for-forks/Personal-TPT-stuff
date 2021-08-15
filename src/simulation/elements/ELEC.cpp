@@ -32,7 +32,7 @@ void Element::Element_ELEC()
 
 	DefaultProperties.temp = R_TEMP + 200.0f + 273.15f;
 	HeatConduct = 251;
-	Description = "Electrons. Sparks electronics, reacts with NEUT and WATR.";
+	Description = "Electrons. Sparks electronics, reacts with NEUT and WATR. Can make AMTR";
 
 	Properties = TYPE_ENERGY|PROP_LIFE_DEC|PROP_LIFE_KILL_DEC;
 
@@ -110,6 +110,13 @@ static int update(UPDATE_FUNC_ARGS)
 				case PT_EXOT:
 					parts[ID(r)].tmp2 += 5;
 					parts[ID(r)].life = 1000;
+					break;
+				case PT_GOLD:
+					if (RNG::Ref().chance(1, 100) == 100)
+					{
+						sim->part_change_type(i, x, y, PT_AMTR); //Reference to how positrons were first artificially created
+						return 1;
+					}
 					break;
 				case PT_NONE: //seems to speed up ELEC even if it isn't used
 					break;
