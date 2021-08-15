@@ -88,6 +88,16 @@ static int update(UPDATE_FUNC_ARGS)
 										sim->pv[y/CELL][x/CELL] += 10.0f;
 									}
 					}
+					break;
+				case PT_EXOT:
+					parts[ID(r)].tmp2 += 5;
+					parts[ID(r)].life = 1000;
+					break;
+				default:
+					parts[ID(r)].temp +=50;
+					parts[i].temp += 50;
+					break;
+					
 				}
 			}
 	return 0;
