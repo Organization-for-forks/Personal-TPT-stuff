@@ -63,8 +63,9 @@ static int update(UPDATE_FUNC_ARGS)
 	// Compress when Newtonian gravity is applied
 	// multiplier=1 when gravtot=0, multiplier -> 5 as gravtot -> inf
 	maxlife = maxlife*int(5.0f - 8.0f/(gravtot+2.0f));
-	for (rx=-1; rx<2; rx++)
-		for (ry=-1; ry<2; ry++)
+	for (rx=-1; rx<2; rx++) {
+		for (ry=-1; ry<2; ry++) {
+			//Curly brackets needed to guard rt = TYP(r)
 			r = pmap[ry][rx];
 			rt = TYP(r);
 			if (sim->can_move[PT_O2][rt])
