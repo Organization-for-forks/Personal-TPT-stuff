@@ -2,6 +2,7 @@
 
 static int update(UPDATE_FUNC_ARGS);
 static int graphics(GRAPHICS_FUNC_ARGS);
+static int create(CREATE_ELEMENT_FUNC_ARGS);
 
 void Element::Element_AMTR()
 {
@@ -87,7 +88,8 @@ static int update(UPDATE_FUNC_ARGS)
 				if (!r)
 					continue;
 				rt = TYP(r);
-				if (rt!=PT_AMTR && rt!=PT_DMND && rt!=PT_CLNE && rt!=PT_PCLN && rt!=PT_VOID && rt!=PT_BHOL && rt!=PT_NBHL && rt!=PT_PRTI && rt!=PT_PRTO)
+				int immune = parts[i].ctype;
+				if (rt!=PT_AMTR && rt!=PT_DMND && rt!=PT_CLNE && rt!=PT_PCLN && rt!=PT_VOID && rt!=PT_BHOL && rt!=PT_NBHL && rt!=PT_PRTI && rt!=PT_PRTO && rt!=immune)
 				{
 					parts[i].life++;
 					if (parts[i].life==4)
@@ -110,4 +112,9 @@ static int graphics(GRAPHICS_FUNC_ARGS)
 	// don't render AMTR as a gas
 	// this function just overrides the default graphics
 	return 1;
+}
+
+static int create(CREATE_ELEMENT_FUNC_ARGS)
+{
+	DefaultProperties.tmp = 1;
 }
