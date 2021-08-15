@@ -69,7 +69,7 @@ static int update(UPDATE_FUNC_ARGS)
 						if (RNG::Ref().chance(19, 20))
 							sim->kill_part(ID(r));
 						sim->pv[y/CELL][x/CELL] -= 2.0f;
-						sim->hv[y/CELL][x/CELL] = MAX_TEMP
+						sim->hv[y/CELL][x/CELL] = MAX_TEMP;
 						sim->kill_part(i);
 						return 1;
 					}
