@@ -65,7 +65,8 @@ static int update(UPDATE_FUNC_ARGS)
 				switch (rt)
 				{
 				case PT_ELEC:
-					if (rt == PT_ELEC) {
+					if (rt!=PT_AMTR && rt!=PT_DMND && rt!=PT_CLNE && rt!=PT_PCLN && rt!=PT_VOID && rt!=PT_BHOL && rt!=PT_NBHL && rt!=PT_PRTI && rt!=PT_PRTO)
+					{
 						int r, rx, ry, rt;
 							for (rx=-1; rx<2; rx++)
 								for (ry=-1; ry<2; ry++)
