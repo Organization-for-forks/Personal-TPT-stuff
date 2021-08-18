@@ -77,11 +77,8 @@ static int update(UPDATE_FUNC_ARGS)
 											continue;
 										rt = TYP(r);
 										parts[i].life++;
-										if (parts[i].life==4)
-										{
-											sim->kill_part(i);
-											return 1;
-										}
+										sim->kill_part(i);
+										return 1;
 										
 										sim->create_part(ID(r), x+rx, y+ry, PT_PHOT);
 										
@@ -91,7 +88,7 @@ static int update(UPDATE_FUNC_ARGS)
 					}
 					break;
 				case PT_EXOT:
-					parts[ID(r)].tmp2 += 5;
+					parts[ID(r)].tmp2 += 50;
 					parts[ID(r)].life = 1000;
 					break;
 				default:
